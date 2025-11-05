@@ -1,4 +1,3 @@
-
 **https://developer.hashicorp.com/vault/tutorials/encryption-as-a-service/eaas-spring-demo**
 
 https://developer.hashicorp.com/vault/install
@@ -53,9 +52,12 @@ vault secrets list
 **Test the endpoints:**
 Read secret:
 GET http://localhost:8080/secrets/myapp
+ where /secrets/ is the REST endpoint prefix & myapp is the path in the vault. 
 
 Write secret:
 POST http://localhost:8080/secrets/myapp
+ where /secrets/ is the REST endpoint prefix & myapp is the path in the vault.
+ 
 Body:
 {
   "username": "user2",
