@@ -36,8 +36,19 @@ $ set VAULT_ADDR=http://127.0.0.1:8200
 
 $ vault status
 
+To login:
+vault login
+Enter token now to login: **devroot**
+
 **To add secrets to vault:**
-vault kv put secret/vault-demo/myapp username=user1 password=pass123
+vault kv put secret/myapp username=demoUser password=superSecret123
+
+To get value using vault command:
+vault kv get -mount="secret" "myapp" (OR)
+vault kv get secret/myapp
+
+To list all vaults:
+vault secrets list
 
 **Test the endpoints:**
 Read secret:
