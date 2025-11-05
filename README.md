@@ -1,0 +1,49 @@
+https://developer.hashicorp.com/vault/install
+
+**Download & Start:**
+
+On brand new Vault without any existing data, start the initialize Vault by running:
+
+$ vault operator init
+
+$ vault server -dev (automatic token)
+$ vault server -dev -dev-root-token-id devroot (with devroot as token).
+
+default:
+$ set VAULT_DEV_LISTEN_ADDRESS=127.0.0.1:8200
+
+**(Optional)**
+**SSL**
+$ set VAULT_CACERT='/var/folders/qr/zgztx0sj6n1dxy86sl36ntnw0000gn/T/vault-tls3037226588/vault-ca.pem'
+
+To Start a Vault dev server with the literal string root as the root token value, and enable TLS:
+vault server -dev -dev-root-token-id root -dev-tls
+
+LOCAL:
+$ vault server -dev -dev-root-token-id devroot
+
+At runtime, the dev server also automatically unseals, and prints the "unseal key" and "initial root token" values to the standard output
+
+Once vault started, it will show the UnSeal key like below:
+Unseal Key: MEFP57Q/67BiU/zLRLHXXvbWGHaQyn+xMdL3JmdMQ+E=
+Root Token: devroot
+
+Open another terminal:
+$ set VAULT_ADDR=http://127.0.0.1:8200
+
+$ vault status
+
+**To add secrets to vault:**
+vault kv put secret/vault-demo/myapp username=user1 password=pass123
+
+**Test the endpoints:**
+Read secret:
+GET http://localhost:8080/secrets/myapp
+
+Write secret:
+POST http://localhost:8080/secrets/myapp
+Body:
+{
+  "username": "user2",
+  "password": "newpass"
+}
